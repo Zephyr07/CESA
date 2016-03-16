@@ -1,0 +1,56 @@
+<section class="top" style="background: url('images/f.jpg') no-repeat">
+    <div class="wrapper content_header clearfix">
+        <div class="work_nav">
+
+            <ul class="btn clearfix hide">
+                <li><a href="#" class="previous" data-title="Previous"></a></li>
+                <li><a href="index.html" class="grid" data-title="Portfolio"></a></li>
+                <li><a href="#" class="next" data-title="Next"></a></li>
+            </ul>
+        </div><!-- end work_nav -->
+        <h1 class="title">{{departement.libelle}}</h1>
+    </div>
+</section><!-- end top -->
+
+<section class="wrapper">
+    <div class="content">
+        <spinner ng-if="loading==true" name="html5spinner" ng-cloak="">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+            <div class="please-wait">Patientez SVP...</div>
+        </spinner>
+        <table class="table table-responsive table-bordered table-striped table-condensed">
+            <caption>
+                <div class="">
+                    <input class="form-control" style="width: 70%; float:left" type="text" ng-model="searchKey" class="form-control" placeholder="{{'Entrer un mot-clé'|translate}}"/>
+                    <input class="form-control" style="width: 20%; float: right" type="number" placeholder="{{'Nombre à afficher'|translate"}}  ng-model="par_page"/>
+                </div>
+                <h4 style="margin: 54px auto 15px" translate="">Liste des étudiants</h4>
+            </caption>
+            <thead>
+            <tr>
+                <th translate="">Noms et prénoms</th>
+                <th translate="">Téléphone</th>
+                <th translate="">Email</th>
+                <th translate="">Profil</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr dir-paginate="u in users |filter:searchKey |orderBy : '-nom' : true |itemsPerPage: par_page " ui-sref="user({dept:u.user.dept.sigle,id:u.user.id})">
+                <td>{{u.user.nom}}</td>
+                <td>{{u.user.tel}}</td>
+                <td>{{u.user.email}}</td>
+                <td>{{u.user.profil}}</td>
+            </tr>
+
+            </tbody>
+        </table>
+        <p id="message"></p>
+        <div class="text-center" >
+            <dir-pagination-controls></dir-pagination-controls>
+        </div>
+    </div>
+</section>
+

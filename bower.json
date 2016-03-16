@@ -1,0 +1,27 @@
+{
+  "name": "ngom",
+  "authors": [
+    "Zephyr08 <enanda52@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "ui-router#~0.2.18",
+    "angular": "angularjs#~1.4.8",
+    "angularUtils-pagination": "angular-utils-pagination#~0.9.2",
+    "angular-gettext": "~2.2.1",
+    "ng-file-upload-shim": "~12.0.1",
+    "ng-file-upload": "~12.0.1",
+    "angular-spinners": "~3.1.2"
+  }
+}

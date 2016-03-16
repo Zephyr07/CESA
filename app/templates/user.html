@@ -1,0 +1,74 @@
+<section class="top" style="background: url('images/f.jpg') no-repeat">
+    <div class="wrapper content_header clearfix">
+        <div class="work_nav">
+
+            <ul class="btn clearfix">
+                <li><a ng-click="previous(usr,userU)" requireds class="previous" data-title="Previous"></a></li>
+                <li><a ui-sref="departement({libelle:user.infosuser.user.dept.sigle})" requireds class="grid" data-title="Portfolio"></a></li>
+                <li><a  ng-click="next(usr,userU)" requireds class="next" data-title="Next"></a></li>
+            </ul>
+
+        </div><!-- end work_nav -->
+        <h1 class="title">{{userU.infosuser.user.nom}}</h1>
+    </div>
+</section><!-- end top -->
+<style>
+    .user h2{
+        margin-bottom: 10px;
+    }
+    .my-drop-zone { border: dotted 3px lightgray; min-height: 70px;}
+    .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+    .another-file-over-class { border: dotted 3px green; }
+</style>
+<section class="wrapper">
+    <div class="content" style="padding-top: 10px;">
+        <spinner ng-if="loadingUser==true" name="html5spinner" ng-cloak="">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+            <div class="please-wait">Patientez SVP...</div>
+        </spinner>
+        <div class="row">
+            <a ng-show="edit" class="btn btn-danger pull-right" ui-sref="edit({id:user.infosuser.user.id})">Modifier profil</a>
+        </div>
+        <div class="row user">
+            <div class="col-lg-4">
+                <img src="{{adresseServeur}}uploads/{{userU.infosuser.user.photo}}" alt="{{userU.infosuser.user.nom}}" title="{{userU.infosuser.user.nom}}"/>
+                <div class="row" ng-show="edit">
+                    <div class="col-lg-19" ng-controller="FileUploadCtrl" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+                        <input type="file" class="btn btn-default" nv-file-select="" uploader="uploader" />
+                        <div ng-show="progress>0" class="progress progress-striped active">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%">
+                                <span class="sr-only">{{progress}}%</span>
+                            </div>
+                        </div>
+                        <p id="message" style="margin-bottom: 10px;"></p>
+                        <button ng-click="uploader.uploadAll()" class="btn btn-default btn-defaults btn-sm" translate="">Ajouter une photo</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+
+                    </div>
+                    <div class="col-lg-12">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="detail"><label for="" translate="">Noms et prénoms :</label> <span>{{userU.infosuser.user.nom}}</span></div>
+                <div class="detail"><label for="" translate="">Email :</label> <span>{{userU.infosuser.user.email}}</span></div>
+                <div class="detail"><label for="" translate="">Téléphone :</label> <span>{{userU.infosuser.user.tel}}</span></div>
+                <div class="detail"><label for="" translate="">Département :</label> <span>{{userU.infosuser.user.dept.libelle}}</span></div>
+                <div class="detail"><label for="" translate="">Promotion :</label> <span>{{userU.infosuser.user.promotion}}</span></div>
+                <div class="detail" ng-show="edit"><label for="" translate="">Login :</label> <span>{{userU.login}}</span></div>
+                <div class="detail" ng-if="user.infosuser.user.profil=='etudiant'"><label for="" translate="">Niveau :</label> <span>{{userU.infosuser.niveau}}</span></div>
+                <div class="detail" ng-if="user.infosuser.user.profil=='ing'"><label for="" translate="">Lieu de service :</label> <span>{{userU.infosuser.lserv}}</span></div>
+                <div class="detail" ng-if="user.infosuser.user.profil=='ing'"><label for="" translate="">Poste :</label> <span>{{userU.infosuser.poste}}</span></div>
+                <div class="detail" ng-if="user.infosuser.user.profil=='ing'"><label for="" translate="">Ville :</label> <span>{{userU.infosuser.ville}}</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+

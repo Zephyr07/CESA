@@ -1,0 +1,69 @@
+<section class="top" style="background: url('images/f.jpg') no-repeat">
+    <div class="wrapper content_header clearfix">
+        <div class="work_nav">
+
+            <ul class="btn clearfix hide">
+                <li><a href="#" class="previous" data-title="Previous"></a></li>
+                <li><a href="index.html" class="grid" data-title="Portfolio"></a></li>
+                <li><a href="#" class="next" data-title="Next"></a></li>
+            </ul>
+        </div><!-- end work_nav -->
+        <h1 class="title" translate="">Adminsitration</h1>
+    </div>
+</section><!-- end top -->
+
+<section class="wrapper">
+    <div class="content" style="padding-top: 10px;">
+        <spinner ng-if="loadingAdmin==true" name="html5spinner" ng-cloak="">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+            <div class="please-wait" translate="">Patientez ...</div>
+        </spinner>
+
+        <table class="table table-responsive table-bordered table-striped table-condensed">
+            <caption>
+                <div class="">
+                    <input class="form-control" style="width: 70%; float:left" type="text" ng-model="searchKey" class="form-control" placeholder="{{'Entrer un mot-clé'|translate}}"/>
+                    <input class="form-control" style="width: 20%; float: right" type="number" placeholder="{{'Nombre à afficher'|translate}}"  ng-model="par_page"/>
+                </div>
+                <h4 style="margin: 54px auto 15px" translate="" id="message">Liste des utilisateurs</h4>
+                <p id="message-info" style="margin-bottom: 10px;"></p>
+            </caption>
+            <thead>
+            <tr>
+                <th translate="">Login</th>
+                <th translate="">Noms</th>
+                <th translate="">Téléphone</th>
+                <th translate="">Email</th>
+                <th translate="">Departement</th>
+                <th translate="">Profil</th>
+                <th translate="">Statut</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr dir-paginate="u in users |filter:searchKey |orderBy : '-nom' : true |itemsPerPage: par_page ">
+                <td>{{u.login}}</td>
+                <td>{{u.infosuser.user.nom}}</td>
+                <td>{{u.infosuser.user.tel}}</td>
+                <td>{{u.infosuser.user.email}}</td>
+                <td>{{u.infosuser.user.dept.libelle}}</td>
+                <td>{{u.infosuser.user.profil}}</td>
+                <td ng-if="u.infosuser.user.admin==0">Utilisateur <i class="fa fa-arrow-up" ng-if="admin==2" ng-click="setProfile(u.infosuser.user.id)"></i>
+                <td ng-if="u.infosuser.user.admin==1">Administrateur <i class="fa fa-arrow-down" ng-if="admin==2" ng-click="setProfile(u.infosuser.user.id)"></i></td>
+                <td ng-if="u.infosuser.user.admin==2">Super Administrateur</td>
+                <td>
+                    <button ng-if="u.infosuser.user.admin!=2" class="btn btn-danger" ng-click="deleteUser(u.infosuser.user.id)"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+        <div class="text-center" >
+            <dir-pagination-controls></dir-pagination-controls>
+        </div>
+    </div>
+</section>
+

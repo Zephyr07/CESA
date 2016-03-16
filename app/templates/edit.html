@@ -1,0 +1,106 @@
+<section class="top" style="background: url('images/f.jpg') no-repeat">
+    <div class="wrapper content_header clearfix">
+        <div class="work_nav">
+
+            <ul class="btn clearfix hide">
+                <li><a href="#" required class="previous" data-title="Previous"></a></li>
+                <li><a href="index.html" required class="grid" data-title="Portfolio"></a></li>
+                <li><a href="#" required class="next" data-title="Next"></a></li>
+            </ul>
+
+        </div><!-- end work_nav -->
+        <h1 class="title" translate="">Modification des informations</h1>
+    </div>
+</section><!-- end top -->
+<style>
+    .user h2{
+        margin-bottom: 10px;
+    }
+    .my-drop-zone { border: dotted 3px lightgray; min-height: 70px;}
+    .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+    .another-file-over-class { border: dotted 3px green; }
+</style>
+
+<section class="wrapper">
+    <div class="content" style="padding-top: 10px;">
+        <div class="row">
+            <div class="col-lg-12">
+                <form method="post" ng-submit="EditUser(user)">
+                    <div class="detail col-lg-9">
+                        <label for="login" translate="">Identifiant</label>
+                        <input type="text" names="login" ng-model="user.login" id="login" required class="form-control" placeholder="{{'Identifiant' |translate}}"/>
+                    </div>
+                    <div class="detail col-lg-9">
+                        <label for="pass" translate="">Mot de passe</label>
+                        <input type="password" names="pass" ng-model="user.pass" id="pass" class="form-control" placeholder="{{'Mot de passe'|translate}}"/>
+                    </div>
+                    <div class="detail col-lg-9">
+                        <label for="pass2" translate="">Confirmation du mot de passe</label>
+                        <input type="password" names="passconf" ng-model="user.passconf" id="pass2" class="form-control" placeholder="{{'Confirmer le mot de passe'|translate}}"/>
+                    </div>
+                    <div class="detail col-lg-9">
+                        <label for="nom" translate="">Nom</label>
+                        <input type="text" names="nom" ng-model="user.nom" id="nom" required class="form-control" placeholder="{{'Noms et prénoms' |translate}}"/>
+                    </div>
+                    <div class="detail col-lg-9">
+                        <label for="email" translate="">Email</label>
+                        <input type="email" names="email" ng-model="user.email" id="email" required class="form-control" placeholder="{{'Email'|translate}}"/>
+                    </div>
+                    <div class="detail col-lg-9">
+                        <label for="telephone" translate="">Téléphone</label>
+                        <input type="number" names="tel" ng-model="user.tel" value="{{user.infosuser.user.tem}}" id="telephone" min="200000000" max="999999999" required class="form-control" placeholder="{{'Téléphone' |translate}}"/>
+                    </div>
+                    <div class="detail col-lg-9">
+                        <label for="departement" translate="">Département</label>
+                        <select names="" ng-model="user.dept" id="departement" ng-options="d.id as d.libelle for d in departements" required class="form-control">
+                            <option value="" translate="">Département</option>
+                        </select>
+                    </div>
+                    <div class="detail col-lg-9">
+                        <label for="promotion" translate="">Promotion</label>
+                        <input type="number" ng-model="user.promotion" min="1971" id="promotion" required class="form-control" placeholder="{{'Promotion' |translate}}"/>
+                    </div>
+                    <div class="detail col-lg-9">
+                        <label for="profil" translate="">Profil</label>
+                        <select names="" ng-model="user.profil" id="profil" required class="form-control">
+                            <option value="" translate="">Profil</option>
+                            <option value="etudiant" ng-selected="user.profil=='etudiant'" translate="">Etudiant</option>
+                            <option value="ing" ng-selected="user.profil=='ing'" translate="">Ingénieur</option>
+                        </select>
+                    </div>
+                    <div ng-if="user.profil=='etudiant'" required class="detail col-lg-9">
+                        <label for="niveau" translate="">Niveau</label>
+                        <select ng-model="user.niveau" id="niveau" required class="form-control">
+                            <option value="" translate="">Niveau</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div ng-if="user.profil=='ing'">
+                        <div class="detail col-lg-9">
+                            <label for="poste" translate="">Poste</label>
+                            <input type="text" ng-model="user.poste" id="poste" placeholder="{{'Poste' |translate}}" required class="form-control"/>
+                        </div>
+                        <div class="detail col-lg-9">
+                            <label for="lservice" translate="">Lieu de service</label>
+                            <input type="text" ng-model="user.lserv" id="lservice" placeholder="{{'Lieu de service'|translate}}" required class="form-control"/>
+                        </div>
+                        <div class="detail col-lg-9">
+                            <label for="ville" translate="">Ville</label>
+                            <input type="text" ng-model="user.ville" id="ville" placeholder="{{'Ville'|translate}}" required class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="detail col-lg-9">
+                        <button type="reset" class="btn btn-danger" style="margin-right:10px;" translate="">Annuler</button>
+                        <button type="submit" class="btn btn-default btn-defaults" translate="">Modifier</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
